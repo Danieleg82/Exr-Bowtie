@@ -183,6 +183,4 @@ Considering the above summary tables, we could easily summarize our overall cons
 1.	ExpressRoute’s cross-connections are indeed introducing added value to both standard Hub/Spoke and vWAN connectivity scenarios, but the best improvements are seen especially in a scenario of standard HUB/Spoke connectivity (with vWAN, the connectivity to primary region in case of circuit's failure would survive even without cross-connection, even if with latency implications)
 2.	vWAN (or vWAN-like connectivity topologies leveraging Hub/Spoke models) represents the real key-differentiator in protecting against both circuit’s and Azure region’s failures.
 
-With vWAN we can still be able to preserve access to primary regions even in case of an ExpressRoute circuit’s failure, and with the bow-tie connections we can potentially be able to failover to a secondary region without impacting our MPLS connection. 
-
-
+With vWAN we can still be able to preserve access to primary regions even in case of an ExpressRoute circuit’s failure and without the need of any cross-connection, while - on the other hand - the bow-tie connections allow to keep minimum impact on customer's MPLS backbone in case regional outages. 
