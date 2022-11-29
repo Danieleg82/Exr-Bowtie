@@ -139,3 +139,50 @@ In case of failure of entire Region A:
     - The impact on latency – since we’re leveraging MS backbone – is expected to be optimized
 
 **In case of isolated branches (with no WAN/MPLS connectivity)**: the loss of a region, with circuit (C1 here) still up & running , would still allow to have Branch1 connected to RegionB thanks to the cross-connection. . Branch2Branch transit would not be possible here, even with no circuit’s/region’s failure (with vWAN, a similar connection would be possible today only by leveraging ExpressRoute GlobalReach functionalities)
+
+<img src=Pics/vWAN%20-%20bowtie%20-%20regionfail2.jpg width="650" height="500" align="center" />
+
+# **Summary Tables**
+
+## ***Circuit failure***
+
+| | **Can I still reach primary region?**  | **Can I reach secondary region?** | **Can I reach Azure without leveraging my MPLS?** | **Can I have connectivity between primary and secondary regions?** | 
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| **Standard Hub & Spoke – NO bow-tie**  | NO | YES | NO | Not without peering the Azure regions |
+| **Standard Hub & Spoke –bow-tie** | NO | YES | NO | Not without peering the Azure regions |
+| **vWAN – NO bow-tie** | YES | YES | NO | YES |
+| **vWAN – bow-tie** | YES | YES | NO | YES |
+
+## ***Region failure***
+
+| | **Can I still reach primary region?**  | **Can I reach secondary region?** | **Can I reach Azure without leveraging my MPLS?** | **Can I have connectivity between primary and secondary regions?** | 
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| **Standard Hub & Spoke – NO bow-tie**  | N.A | YES | NO | N.A |
+| **Standard Hub & Spoke –bow-tie** | N.A | YES | YES | N.A |
+| **vWAN – NO bow-tie** | N.A | YES | NO | N.A |
+| **vWAN – bow-tie** | N.A | YES | YES | N.A |
+
+# **Conclusions**
+
+When we talk about “failures/outages” we often tend to forget about the importance of keeping in consideration **what** is exactly failing in the scenario we want to analyze.
+
+The failure of a single link of an ExpressRoute circuit…
+
+The failure of both links of an ExpressRoute circuit (so the failure of an entire peering location)…
+
+The failure of ExpressRoute gateways inside a HUB (but not of the entire region)…
+
+The failure of an entire Azure region…
+
+All of these will produce very different effects depending on the analyzed scenario.
+
+This premise is important as well when discussing the benefits of ExpressRoute’s cross-connections, which are of course introducing lots of added value in case of failure of Azure regions, but of course have to be considered useless if talking  about protection in case of failures on both the MSEE devices handling our circuit’s connectivity.
+
+Considering the above summary tables, we could easily summarize our overall considerations with the following sentences:
+
+1.	ExpressRoute’s cross-connections are indeed introducing added value to both standard Hub/Spoke and vWAN connectivity scenarios, but exclusively within the context of protecting against failures/outages which are not correlated with the availability of both the MSEE routers handling our circuit’s connectivity.
+2.	vWAN (or vWAN-like connectivity topologies leveraging Hub/Spoke models) represents the real key-differentiator in protecting against both circuit’s and Azure region’s failures.
+
+With vWAN we can still be able to preserve access to primary regions even in case of an ExpressRoute circuit’s failure, and with the bow-tie connections we can potentially be able to failover to a secondary region without impacting our MPLS connection. 
+
+
