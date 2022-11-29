@@ -176,11 +176,11 @@ The failure of an entire Azure region…
 
 All of these will produce very different effects depending on the analyzed scenario.
 
-This premise is important as well when discussing the benefits of ExpressRoute’s cross-connections, which are of course introducing lots of added value in case of failure of Azure regions, but of course have to be considered useless if talking  about protection in case of failures on both the MSEE devices handling our circuit’s connectivity.
+This premise is important as well when discussing the benefits of ExpressRoute’s cross-connections.
 
 Considering the above summary tables, we could easily summarize our overall considerations with the following sentences:
 
-1.	ExpressRoute’s cross-connections are indeed introducing added value to both standard Hub/Spoke and vWAN connectivity scenarios, but exclusively within the context of protecting against failures/outages which are not correlated with the availability of both the MSEE routers handling our circuit’s connectivity.
+1.	ExpressRoute’s cross-connections are indeed introducing added value to both standard Hub/Spoke and vWAN connectivity scenarios, but the best improvements are seen especially in a scenario of standard HUB/Spoke connectivity (with vWAN, the connectivity to primary region in case of circuit's failure would survive even without cross-connection, even if with latency implications)
 2.	vWAN (or vWAN-like connectivity topologies leveraging Hub/Spoke models) represents the real key-differentiator in protecting against both circuit’s and Azure region’s failures.
 
 With vWAN we can still be able to preserve access to primary regions even in case of an ExpressRoute circuit’s failure, and with the bow-tie connections we can potentially be able to failover to a secondary region without impacting our MPLS connection. 
