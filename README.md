@@ -149,7 +149,7 @@ In case of failure of entire Region A:
 | | **Can I still reach primary region?**  | **Can I reach secondary region?** | **Can I reach Azure without leveraging my MPLS?** | **Can I have connectivity between primary and secondary regions?** | 
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | **Standard Hub & Spoke – NO bow-tie**  | NO | YES | NO | Not without peering the Azure regions |
-| **Standard Hub & Spoke –bow-tie** | NO | YES | NO | Not without peering the Azure regions |
+| **Standard Hub & Spoke –bow-tie** | YES | YES | NO | Not without peering the Azure regions |
 | **vWAN – NO bow-tie** | YES | YES | NO | YES |
 | **vWAN – bow-tie** | YES | YES | NO | YES |
 
